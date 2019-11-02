@@ -2,6 +2,7 @@ import numpy as np
 import math
 import fractions
 import sys
+from func import back_substitution
 np.set_printoptions(formatter={'all':lambda x: str(fractions.Fraction(x).limit_denominator())})
 
 def row_elimination_0(A,i,j):
@@ -43,13 +44,6 @@ def row_swapping(A,i,j):
 			print("Will end now...")
 			sys.exit(0)
 
-def back_substitution():
-	rhs = np.zeros(m,dtype=np.float)
-	for i in range(m-1,-1,-1):
-		rhs[i] = A[i][n-1]
-		for j in range(i+1,n-1):
-			rhs[i] = rhs[i] - (A[i][j] * rhs[j])
-	print("\nRHS: ",rhs)
 
 
 # A = np.array([[1,1,-1,9],[0,1,3,3],[-1,0,-2,2]],dtype=np.float)
@@ -80,7 +74,7 @@ for j in range(0,n-1):
 		else:
 			if(A[i][j]!=0):
 				A = row_elimination_0(A,i,j)
-back_substitution()
+back_substitution(A)
 
 
 
