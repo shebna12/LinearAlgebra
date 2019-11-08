@@ -50,8 +50,8 @@ def row_swapping(A,row_n,col_n):
 			print("Will end now...")
 			sys.exit(0)
 
-# Perform gaussian elimination method
-def gaussian_elmination(A):
+# Perform gaussian elimination method (returns solution for Ax=b)
+def gaussian_elimination(A):
 	m = A.shape[0]
 	n = A.shape[1]
 	for col_n in range(0,n-1):
@@ -69,24 +69,25 @@ def gaussian_elmination(A):
 				if(A[row_n][col_n]!=0):
 					A = row_elimination_0(A,row_n,col_n,m,n)
 	x = back_substitution(A)
+	print("Solution: ",x)
 	return x
 
 if __name__ == '__main__':
 	## Sample 3x3 input
 	A = np.array([[2,1,-1],[-3,0,2],[-2,1,2]],dtype=np.float64)
 	b = np.array([8,-11,-3],dtype=np.float64)
-
+	
 	## Sample 4x4 input
-	A = np.array([[1,2,-1,1],[-1,1,2,-1],[2,-1,0,2],[1,1,-1,2]],dtype=np.float64)
-	b = np.array([6,3,14,8],dtype=np.float64)
+	# A = np.array([[1,2,-1,1],[-1,1,2,-1],[2,-1,0,2],[1,1,-1,2]],dtype=np.float64)
+	# b = np.array([6,3,14,8],dtype=np.float64)
 	
 	
-	# Comment this if you want decimal version
-	display_as_fraction()
+	# Unomment this if you want fraction version
+	# display_as_fraction()
 
 
 	Ab = np.concatenate((A,b.T[:,None]),axis=1)
-	x = gaussian_elmination(Ab)
+	x = gaussian_elimination(Ab)
 
 
 	
